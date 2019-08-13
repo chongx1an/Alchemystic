@@ -43,6 +43,10 @@ public class EnemyController : MonoBehaviour
     private float maxTime = 1.0f;
 
     public GameObject hurtingEffect;
+    public float patrolMaxRight;
+    public float patrolMaxLeft;
+    private bool isReachedPatrolPoint;
+    private float destX;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +60,12 @@ public class EnemyController : MonoBehaviour
 
         animator = GetComponent<Animator>();
         targetList = new ArrayList();
+
+        float restritedTransformX = Mathf.Clamp(transform.position.x, patrolMaxLeft, patrolMaxRight);
+        
+        transform.position = new Vector2(restritedTransformX, transform.position.y);
+        isReachedPatrolPoint = false;
+        destX = Random.Range(patrolMaxLeft, patrolMaxRight);
     }
 
     // Update is called once per frame
@@ -92,7 +102,44 @@ public class EnemyController : MonoBehaviour
         else
         {
             nearestTarget = null;
+            StartCoroutine("Patrol");
         }
+
+    }
+
+    private IEnumerator Patrol()
+    {
+        Debug.Log(destX - transform.position.x);
+        FlipEnemy();
+        if (!isReachedPatrolPoint)
+        {
+            if (Mathf.Round(destX) > Mathf.Round(transform.position.x))
+            {
+
+                transform.Translate(Vector3.right * moveSpeed / 5.0f * Time.deltaTime);
+                animator.SetBool("isWalking", true);
+                isFacingRight = true;
+            }
+            else if (Mathf.Round(destX) < Mathf.Round(transform.position.x))
+            {
+                transform.Translate(Vector3.left * moveSpeed / 5.0f * Time.deltaTime);
+                animator.SetBool("isWalking", true);
+                isFacingRight = false;
+            }
+            else
+            {
+                isReachedPatrolPoint = true;
+            }
+        }
+        else
+        {
+            destX = Random.Range(patrolMaxLeft, patrolMaxRight);
+            animator.SetBool("isWalking", false);
+            yield return new WaitForSeconds(Random.Range(4, 8));
+            isReachedPatrolPoint = false;
+
+        }
+        
 
     }
 

@@ -62,7 +62,9 @@
   <ItemGroup>
     <Compile Include="Assets\BossController.cs" />
     <Compile Include="Assets\CursorController.cs" />
+    <Compile Include="Assets\FireHintController.cs" />
     <Compile Include="Assets\HealFountainController.cs" />
+    <Compile Include="Assets\IceHintController.cs" />
     <Compile Include="Assets\PortalController.cs" />
     <Compile Include="Assets\Scripts\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
@@ -78,7 +80,7 @@
     <Compile Include="Assets\Scripts\PotionController.cs" />
     <Compile Include="Assets\Scripts\SpaceController.cs" />
     <Compile Include="Assets\Scripts\VerticleObstacleController.cs" />
-    <None Include="Assets\SomeGameDesciption.txt" />
+    <Compile Include="Assets\SpaceHintController.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/ch0ng/Alchemystic_2018/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
