@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 984178587255305405}
   - component: {fileID: 1961317458020253098}
   - component: {fileID: 5282011569122420480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ice_effect
   m_TagString: Ice
   m_Icon: {fileID: 0}

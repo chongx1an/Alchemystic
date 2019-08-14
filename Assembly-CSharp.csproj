@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\SpaceController.cs" />
     <Compile Include="Assets\Scripts\VerticleObstacleController.cs" />
     <Compile Include="Assets\SpaceHintController.cs" />
+    <Compile Include="Assets\TriggredAreaController.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/ch0ng/Alchemystic_2018/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>

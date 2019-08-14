@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private GameObject nearestTarget;
-    private ArrayList targetList;
+    public ArrayList targetList;
     private Animator animator;
     private Rigidbody2D rb2d;
 
@@ -229,10 +229,7 @@ public class BossController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ice")
-        {
-            targetList.Add(collision.gameObject);
-        }
+
 
     }
 
@@ -261,11 +258,8 @@ public class BossController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ice")
-        {
-            targetList.Remove(collision.gameObject);
-        }
-        else if (collision.gameObject.tag == "Fire")
+
+        if (collision.gameObject.tag == "Fire")
         {
             hurtingEffect.SetActive(false);
         }

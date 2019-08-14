@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         aimTo = AimTo.Right;
         faceTo = FaceTo.Right;
 
-        health = Mathf.Clamp(20.0f, 0, health);
+        health = Mathf.Clamp(health, 0, health);
 
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

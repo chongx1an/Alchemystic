@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6281043080998730227}
   - component: {fileID: 7888456089633953272}
   - component: {fileID: 5383307906075092864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fire_potion
   m_TagString: Fire Potion
   m_Icon: {fileID: 0}
