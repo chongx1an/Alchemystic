@@ -30,4 +30,5 @@ public class FireEffectController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
+    
 }

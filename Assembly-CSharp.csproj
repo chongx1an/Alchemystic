@@ -60,28 +60,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BossController.cs" />
+    <Compile Include="Assets\AudioManagerController.cs" />
     <Compile Include="Assets\CursorController.cs" />
-    <Compile Include="Assets\FireHintController.cs" />
-    <Compile Include="Assets\HealFountainController.cs" />
-    <Compile Include="Assets\IceHintController.cs" />
-    <Compile Include="Assets\PortalController.cs" />
+    <Compile Include="Assets\HintMapController.cs" />
     <Compile Include="Assets\Scripts\BackgroundController.cs" />
+    <Compile Include="Assets\Scripts\BossController.cs" />
+    <Compile Include="Assets\Scripts\BossTriggredAreaController.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\EnemyTriggeredAreaController.cs" />
     <Compile Include="Assets\Scripts\FireController.cs" />
     <Compile Include="Assets\Scripts\FireEffectController.cs" />
+    <Compile Include="Assets\Scripts\FireHintController.cs" />
+    <Compile Include="Assets\Scripts\HealFountainController.cs" />
     <Compile Include="Assets\Scripts\HealthBarController.cs" />
     <Compile Include="Assets\Scripts\HorizontalObstacleController.cs" />
     <Compile Include="Assets\Scripts\IceController.cs" />
     <Compile Include="Assets\Scripts\IceEffectController.cs" />
+    <Compile Include="Assets\Scripts\IceHintController.cs" />
     <Compile Include="Assets\Scripts\LavaController.cs" />
     <Compile Include="Assets\Scripts\LavaHeadController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PortalController.cs" />
+    <Compile Include="Assets\Scripts\PortalTriggeredAreaController.cs" />
     <Compile Include="Assets\Scripts\PotionController.cs" />
+    <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\SpaceController.cs" />
+    <Compile Include="Assets\Scripts\SpaceHintController.cs" />
     <Compile Include="Assets\Scripts\VerticleObstacleController.cs" />
-    <Compile Include="Assets\SpaceHintController.cs" />
-    <Compile Include="Assets\TriggredAreaController.cs" />
+    <Compile Include="Assets\StartSceneController.cs" />
+    <Compile Include="Assets\StorySceneController.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/ch0ng/Alchemystic_2018/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>

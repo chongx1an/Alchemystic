@@ -23,12 +23,12 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
+  - Player
   - EnemyTriggeredArea
   - Potion
-  - 
-  - 
-  - 
+  - Ice Wall
+  - Enemy
+  - PortalTriggeredArea
   - 
   - 
   - 

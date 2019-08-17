@@ -40,10 +40,16 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;
     private Rigidbody2D rb2d;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
+    private Shader shaderGUItext;
+    private Shader shaderSpritesDefault;
 
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<AudioManagerController>().StartMainSceneBackgroundMusic();
+
         potionMode = PotionMode.Fire;
         aimTo = AimTo.Right;
         faceTo = FaceTo.Right;
@@ -52,6 +58,10 @@ public class PlayerController : MonoBehaviour
 
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = Shader.Find("Sprites/Default"); // or whatever sprite shader is being used
     }
 
     // Update is called once per frame
@@ -88,7 +98,6 @@ public class PlayerController : MonoBehaviour
     private void Move (float moveHorizontal) //Control the movement of player
     {
         FlipPlayer(); //Detect and flip player based on condition
-        
         if (isAiming)
         {
             if (aimTo == AimTo.Right)
@@ -100,6 +109,7 @@ public class PlayerController : MonoBehaviour
                     //rb2d.MovePosition(Vector2.right * moveHorizontal * moveSpeed * Time.deltaTime);
                     animator.SetBool("isBackward", false);
                     animator.SetBool("isForward", true);
+
                     faceTo = FaceTo.Right;
                 }
                 else if (moveHorizontal < 0)
@@ -107,6 +117,7 @@ public class PlayerController : MonoBehaviour
                     transform.Translate(Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime);
                     animator.SetBool("isForward", false);
                     animator.SetBool("isBackward", true);
+
                     faceTo = FaceTo.Right;
                 }
                 else
@@ -114,6 +125,7 @@ public class PlayerController : MonoBehaviour
                     transform.Translate(Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime);
                     animator.SetBool("isForward", false);
                     animator.SetBool("isBackward", false);
+
                     faceTo = FaceTo.Right;
                 }
             }
@@ -124,6 +136,7 @@ public class PlayerController : MonoBehaviour
                     transform.Translate(Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime);
                     animator.SetBool("isForward", false);
                     animator.SetBool("isBackward", true);
+
                     faceTo = FaceTo.Left;
                 }
                 else if (moveHorizontal < 0)
@@ -131,12 +144,14 @@ public class PlayerController : MonoBehaviour
                     transform.Translate(Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime);
                     animator.SetBool("isBackward", false);
                     animator.SetBool("isForward", true);
+
                     faceTo = FaceTo.Left;
                 }
                 else
                 {
                     animator.SetBool("isForward", false);
                     animator.SetBool("isBackward", false);
+
                     faceTo = FaceTo.Left;
                 }
             }
@@ -149,6 +164,7 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime);
                 animator.SetBool("isBackward", false);
                 animator.SetBool("isForward", true);
+
                 faceTo = FaceTo.Right;
             }
             else if (moveHorizontal < 0)
@@ -156,12 +172,14 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime);
                 animator.SetBool("isBackward", false);
                 animator.SetBool("isForward", true);
+
                 faceTo = FaceTo.Left;
             }
             else
             {
                 animator.SetBool("isForward", false);
                 animator.SetBool("isBackward", false);
+
             }
         }
     }    
@@ -248,11 +266,27 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
+        animator.SetTrigger("hurtFire");
+        if(potionMode == PotionMode.Fire)
+        {
+
+        }
+        StartCoroutine("WhiteSpriteAndBack");
         health -= dmg;
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+
+    }
+
+    private IEnumerator WhiteSpriteAndBack()
+    {
+        spriteRenderer.material.shader = shaderGUItext;
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.01f);
+        spriteRenderer.material.shader = shaderSpritesDefault;
+        spriteRenderer.color = Color.white;
     }
 }

@@ -19,10 +19,13 @@ public class FireController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
+        
         if (col.gameObject.tag == "Ground")
         {
             Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
             GameObject fire = Instantiate(fireEffectPrefab, pos, transform.rotation);
+            fire.transform.SetParent(col.gameObject.transform);
+            FindObjectOfType<AudioManagerController>().Play("FireLightUp");
             Destroy(gameObject);
         }
         else if(col.gameObject.tag == "Wall")

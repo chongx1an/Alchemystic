@@ -5,10 +5,11 @@ using UnityEngine;
 public class IceController : MonoBehaviour
 {
     public GameObject iceEffectPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,10 +18,20 @@ public class IceController : MonoBehaviour
         
     }
 
+
     void OnTriggerEnter2D(Collider2D col)
     {
+
         if (col.gameObject.tag == "Ground")
         {
+            GameObject[] iceWalls = GameObject.FindGameObjectsWithTag("Ice");
+
+            if (iceWalls.Length > 4)
+            {
+                iceWalls[0].GetComponent<IceEffectController>().Suicide();
+            }
+
+            FindObjectOfType<AudioManagerController>().Play("PotionBreak4");
             //col.GetComponent<BoxCollider2D>().transform.position.y + 2.75f * col.GetComponent<BoxCollider2D>().size.y
             Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1.0f);
             GameObject ice = Instantiate(iceEffectPrefab, pos, transform.rotation);
@@ -36,4 +47,6 @@ public class IceController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }

@@ -46,7 +46,10 @@ public class HorizontalObstacleController : MonoBehaviour
         {
             collision.collider.transform.SetParent(transform);
         }
+
     }
+
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -54,5 +57,8 @@ public class HorizontalObstacleController : MonoBehaviour
         {
             collision.collider.transform.SetParent(null);
         }
+
     }
+
+
 }

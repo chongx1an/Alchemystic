@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private GameObject nearestTarget;
-    private ArrayList targetList;
+    public ArrayList targetList;
     private Animator animator;
     private Rigidbody2D rb2d;
+    private SpriteRenderer spriteRenderer;
 
     /*
      * Enemy Stats
@@ -47,9 +48,11 @@ public class EnemyController : MonoBehaviour
     public float patrolMaxLeft;
     private bool isReachedPatrolPoint;
     private float destX;
+
     // Start is called before the first frame update
     void Start()
     {
+
         minTime = 0.0f;
 
         rb2d = GetComponent<Rigidbody2D>();
@@ -66,6 +69,10 @@ public class EnemyController : MonoBehaviour
         transform.position = new Vector2(restritedTransformX, transform.position.y);
         isReachedPatrolPoint = false;
         destX = Random.Range(patrolMaxLeft, patrolMaxRight);
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = new Color(1, 0, 0, spriteRenderer.color.a);
     }
 
     // Update is called once per frame
@@ -105,11 +112,14 @@ public class EnemyController : MonoBehaviour
             StartCoroutine("Patrol");
         }
 
+        if (spriteRenderer.color.g < 1.0f)
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g + 0.05f, spriteRenderer.color.b + 0.05f);
+        }
     }
 
     private IEnumerator Patrol()
     {
-        Debug.Log(destX - transform.position.x);
         FlipEnemy();
         if (!isReachedPatrolPoint)
         {
@@ -168,7 +178,7 @@ public class EnemyController : MonoBehaviour
 
     private GameObject FindNearest(ArrayList targetList)
     {
-        Debug.Log(targetList.Count);
+
         GameObject nearest = (targetList[0] as GameObject);
         float nearestDistance = Mathf.Abs(nearest.transform.position.x - transform.position.x);
         float currentDistance;
@@ -245,11 +255,6 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ice")
-        {
-            targetList.Add(collision.gameObject);
-        }
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -277,11 +282,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ice")
-        {
-            targetList.Remove(collision.gameObject);
-        }
-        else if (collision.gameObject.tag == "Fire")
+        if (collision.gameObject.tag == "Fire")
         {
             hurtingEffect.SetActive(false);
         }
@@ -329,7 +330,7 @@ public class EnemyController : MonoBehaviour
         isAttacking = true;
 
         attackReadyTimer = attackCD;
-
+        FindObjectOfType<AudioManagerController>().Play("EnemyAttack");
         yield return new WaitForSeconds(0.4f);
 
         Collider2D[] dmgList = Physics2D.OverlapCircleAll(attackPoint.transform.position, areaOfAttackEffect);

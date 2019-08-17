@@ -43,6 +43,7 @@ public class SpaceController : MonoBehaviour
             player.transform.position = blinkToPos;
             //col.GetComponent<BoxCollider2D>().transform.position.y + 1.2f * col.GetComponent<BoxCollider2D>().size.y
             Vector2 afterEffectPos = new Vector2(player.transform.position.x, transform.position.y + 0.2f);
+            FindObjectOfType<AudioManagerController>().Play("SpaceSound");
             GameObject spaceAfterEffect = Instantiate(spaceAfterEffectPrefab, afterEffectPos, player.transform.rotation);
             Destroy(spaceStartEffect, spaceStartEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
             Destroy(spaceAfterEffect, spaceAfterEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
