@@ -244,3 +244,13 @@ MonoBehaviour:
     maxDistance: 15
     priority: 0
     source: {fileID: 0}
+  - name: HealingSound
+    clip: {fileID: 8300000, guid: d642017a7a48f59459671db50988bfbc, type: 3}
+    volume: 0.73
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.2
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}

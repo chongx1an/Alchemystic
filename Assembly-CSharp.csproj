@@ -65,6 +65,8 @@
     <Compile Include="Assets\BunnyController.cs" />
     <Compile Include="Assets\CursorController.cs" />
     <Compile Include="Assets\HintMapController.cs" />
+    <Compile Include="Assets\PauseController.cs" />
+    <Compile Include="Assets\PauseMenuController.cs" />
     <Compile Include="Assets\Scripts\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\BossController.cs" />
     <Compile Include="Assets\Scripts\BossTriggredAreaController.cs" />

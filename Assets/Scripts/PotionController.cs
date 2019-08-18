@@ -48,6 +48,8 @@ public class PotionController : MonoBehaviour
     public Image fireCD_Cover;
     public Image iceCD_Cover;
     public Image spaceCD_Cover;
+
+    private bool onlyOnce;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,14 +63,19 @@ public class PotionController : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         isAiming = false;
         InitializeTrajectoryPoints();
+        onlyOnce = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CreatePotionWhenInput();
-        AimPotion();
-        ThrowPotionWhenRelease();
+        if (!PauseMenuController.isPaused)
+        {
+            CreatePotionWhenInput();
+            AimPotion();
+            ThrowPotionWhenRelease();
+        }
+
         
     }
     private void FixedUpdate()
@@ -153,6 +160,7 @@ public class PotionController : MonoBehaviour
                 CreatePotion(playerController.potionMode);
                 potion.GetComponent<Rigidbody2D>().gravityScale = 0;
                 isAiming = true;
+                onlyOnce = true;
             }
             
         }
@@ -169,30 +177,37 @@ public class PotionController : MonoBehaviour
     }
     private void ThrowPotionWhenRelease()
     {
-        if (Input.GetMouseButtonUp(0) && potion)
+        if (onlyOnce)
         {
-            Rigidbody2D potionRB2D = potion.GetComponent<Rigidbody2D>();
-            potionRB2D.gravityScale = 2;
-            potionRB2D.velocity = force;    //Throw potion
-            potion.GetComponent<Rigidbody2D>().simulated = true;
-            HideTrajectoryPath();
-            isAiming = false;
-            if (potion.tag == "Fire Potion")
+            if (Input.GetMouseButtonUp(0) && potion)
             {
-                StartCoroutine("ThrowFirePotion");
-                
+                Rigidbody2D potionRB2D = potion.GetComponent<Rigidbody2D>();
+                potionRB2D.gravityScale = 2;
+                potionRB2D.velocity = force;    //Throw potion
+                onlyOnce = false;
+                potion.GetComponent<Rigidbody2D>().simulated = true;
+                HideTrajectoryPath();
+                isAiming = false;
+                if (potion.tag == "Fire Potion")
+                {
+                    StartCoroutine("ThrowFirePotion");
 
-            }
-            else if (potion.tag == "Ice Potion")
-            {
-                StartCoroutine("ThrowIcePotion");
 
+                }
+                else if (potion.tag == "Ice Potion")
+                {
+                    StartCoroutine("ThrowIcePotion");
+
+                }
+                else if (potion.tag == "Space Potion")
+                {
+                    StartCoroutine("ThrowSpacePotion");
+                }
             }
-            else if (potion.tag == "Space Potion")
-            {
-                StartCoroutine("ThrowSpacePotion");
-            }
+
+
         }
+        
     }
 
     private IEnumerator ThrowFirePotion()
@@ -310,6 +325,22 @@ public class PotionController : MonoBehaviour
             Destroy(potion.gameObject);
             potion = null;
             CreatePotion(PlayerController.PotionMode.Space);
+        }
+    }
+
+    public void WhitenTrajectoryPoint()
+    {
+        foreach(GameObject point in trajectoryPointsList)
+        {
+            point.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    public void BlackenTrajectoryPoint()
+    {
+        foreach (GameObject point in trajectoryPointsList)
+        {
+            point.GetComponent<SpriteRenderer>().color = Color.black;
         }
     }
 }

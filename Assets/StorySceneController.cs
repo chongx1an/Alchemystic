@@ -14,6 +14,8 @@ public class StorySceneController : MonoBehaviour
     private string fullText;
     private string currentText;
     private Text textObject;
+    private bool skip;
+    private bool ready;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,20 +28,35 @@ public class StorySceneController : MonoBehaviour
             GetComponent<Animator>(),
             blackFade.GetComponent<Animator>()
         };
+
+        skip = false;
+        ready = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey)
+        
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
-            foreach (Animator theAnimator in animators)
+            skip = true;
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (ready)
+        {
+            if (Input.anyKey)
             {
-                theAnimator.SetTrigger("LoadNextScene");
+                foreach (Animator theAnimator in animators)
+                {
+                    theAnimator.SetTrigger("LoadNextScene");
+                }
             }
         }
     }
-
     private void LoadNextScene()
     {
         SceneManager.LoadScene("MainScene");
@@ -53,7 +70,16 @@ public class StorySceneController : MonoBehaviour
             currentText = fullText.Substring(0, i);
             textObject.text = currentText;
             yield return new WaitForSeconds(delay);
+
+            if (skip)
+            {
+                textObject.text = fullText;
+                break;
+            }
         }
+        yield return new WaitForSeconds(1.0f);
+        ready = true;
+
     }
 
 }

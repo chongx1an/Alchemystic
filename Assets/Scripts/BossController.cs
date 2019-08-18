@@ -30,7 +30,7 @@ public class BossController : MonoBehaviour
     public GameObject attackPoint;
     public float areaOfAttackEffect;
     private float attackRange = 3.0f;
-    private float attackCD = 4.0f;
+    private float attackCD = 3.0f;
     private float attackReadyTimer;
 
     /*

@@ -34,6 +34,7 @@ public class HealFountainController : MonoBehaviour
 
         if (isHealing)
         {
+            AudioManagerController.instance.Play("HealingSound");
             healingEffect.SetActive(true);
         }
         else

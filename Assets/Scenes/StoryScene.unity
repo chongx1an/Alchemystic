@@ -242,7 +242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61, y: -250}
+  m_AnchoredPosition: {x: 0, y: -290}
   m_SizeDelta: {x: 1220, y: 1062.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1366935707
@@ -280,8 +280,8 @@ MonoBehaviour:
     m_LineSpacing: 1.3
   m_Text: "\tOnce upon a time, a world known as Oakheart are suffering from the monster
     that people call \u201CMisfortune\u201D. As the greatest alchemist that born is
-    years, Grendel the Really Old sacrifice himself to fight against the Misfortune.\n\n\tGrendel
-    started his journey\u2026\n\n\tPress any key to start..."
+    years, Grendel the Really Old sacrifice himself to fight against the Misfortune.\n\n\n\n\n\t
+    \        Press any key to start the journey..."
 --- !u!222 &1366935708
 CanvasRenderer:
   m_ObjectHideFlags: 0

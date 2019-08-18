@@ -94,6 +94,8 @@ public class PortalTriggeredAreaController : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
         }
+
+        FindObjectOfType<PotionController>().WhitenTrajectoryPoint();
     }
 
     private IEnumerator LighterBackground()
@@ -110,5 +112,7 @@ public class PortalTriggeredAreaController : MonoBehaviour
 
             yield return new WaitForSeconds(0.5f);
         }
+
+        FindObjectOfType<PotionController>().BlackenTrajectoryPoint();
     }
 }
