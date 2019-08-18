@@ -152,7 +152,6 @@ public class BossController : MonoBehaviour
 
     private GameObject FindNearest(ArrayList targetList)
     {
-        Debug.Log(targetList.Count);
         GameObject nearest = (targetList[0] as GameObject);
         float nearestDistance = Mathf.Abs(nearest.transform.position.x - transform.position.x);
         float currentDistance;
@@ -313,7 +312,7 @@ public class BossController : MonoBehaviour
             animator.SetBool("isAttackingRight", true);
         }
 
-        FindObjectOfType<AudioManagerController>().Play("BossAttack");
+        AudioManagerController.instance.Play("BossAttack");
         attackReadyTimer = attackCD;
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);

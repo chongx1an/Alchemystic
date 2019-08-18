@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManagerController>().StartMainSceneBackgroundMusic();
+
+        AudioManagerController.instance.StartCoroutine("StartMainSceneBackgroundMusic");
 
         potionMode = PotionMode.Fire;
         aimTo = AimTo.Right;

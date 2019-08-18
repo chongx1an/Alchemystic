@@ -33,7 +33,10 @@ public class AudioManagerController : MonoBehaviour
             s.source.spatialBlend = s.spatialBlend;
             s.source.minDistance = s.minDistance;
             s.source.maxDistance = s.maxDistance;
+            s.source.priority = s.priority;
         }
+
+        StartCoroutine("StartStartSceneBackgroundMusic");
     }
 
     private void Start()
@@ -52,16 +55,160 @@ public class AudioManagerController : MonoBehaviour
         }
 
         s.source.Play();
+
+
+
     }
 
-    public void StartMainSceneBackgroundMusic()
+    public IEnumerator StartMainSceneBackgroundMusic()
     {
-        Sound s = Array.Find(sounds, sound => sound.name == "FirstLight");
-        s.source.volume = 0;
-        s.source.Play();
-        for (float i = 0; i < 0.5f; i += 0.1f)
+        StartCoroutine("StopStartSceneBackgroundMusic");
+        Sound s = Array.Find(sounds, sound => sound.name == "Andromeda-EnterGame");
+        if (s == null)
+        {
+            Debug.Log("Unable to find audio source: Andromeda-EnterGame");
+
+        }
+        else
+        {
+            if (!s.source.isPlaying)
+            {
+                s.source.Play();
+                s.source.volume = 0;
+                for (float i = 0; i < 0.4f; i += 0.1f)
+                {
+                    s.source.volume = i;
+                    yield return new WaitForSeconds(1.0f);
+                }
+
+                Debug.Log("Andromeda-EnterGame is playing");
+            }
+        }
+        
+    }
+
+    public IEnumerator StopMainSceneBackgroundMusic()
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == "Andromeda-EnterGame");
+        Debug.Log("Andromeda-EnterGame is stopping");
+        for (float i = s.source.volume; i > 0; i -= 0.1f)
         {
             s.source.volume = i;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        s.source.Stop();
+
+
+    }
+
+    public IEnumerator StartStartSceneBackgroundMusic()
+    {
+        
+        Sound s = Array.Find(sounds, sound => sound.name == "Freeing-Intro");
+        if (s == null)
+        {
+            Debug.Log("Unable to find audio source: Freeing-Intro");
+        }
+        else
+        {
+            if (!s.source.isPlaying)
+            {
+                s.source.Play();
+                s.source.volume = 0;
+                for (float i = 0; i < 0.4f; i += 0.1f)
+                {
+                    s.source.volume = i;
+                    yield return new WaitForSeconds(0.1f);
+                }
+
+                Debug.Log("Freeing-Intro is playing");
+            }
+        }
+        
+    }
+
+    public IEnumerator StopStartSceneBackgroundMusic()
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == "Freeing-Intro");
+
+        Debug.Log("Freeing-Intro is stopping");
+        for (float i = s.source.volume; i > 0; i -= 0.1f)
+        {
+            s.source.volume = i;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        s.source.Stop();
+
+
+    }
+
+    public IEnumerator StartEnterBossBackgroundMusic()
+    {
+        StartCoroutine("StopMainSceneBackgroundMusic");
+        Sound s = Array.Find(sounds, sound => sound.name == "Blight-BossStage");
+        if (s == null)
+        {
+            Debug.Log("Unable to find audio source: Blight-BossStage");
+        }
+        else
+        {
+            if (!s.source.isPlaying)
+            {
+                s.source.Play();
+                s.source.volume = 0;
+                for (float i = 0; i < 0.8f; i += 0.1f)
+                {
+                    s.source.volume = i;
+                    yield return new WaitForSeconds(0.1f);
+                }
+
+                Debug.Log("Blight-BossStage is playing");
+            }
+            
+        }
+
+    }
+
+    public IEnumerator StopEnterBossBackgroundMusic()
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == "Blight-BossStage");
+
+        Debug.Log("Blight-BossStage is stopping");
+        for (float i = s.source.volume; i > 0; i -= 0.1f)
+        {
+            s.source.volume = i;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        s.source.Stop();
+
+
+    }
+
+    public IEnumerator StartAfterSealedBackgroundMusic()
+    {
+        StartCoroutine("StopEnterBossBackgroundMusic");
+        Sound s = Array.Find(sounds, sound => sound.name == "FirstLight-AfterSealed");
+        if (s == null)
+        {
+            Debug.Log("Unable to find audio source: FirstLight-AfterSealed");
+        }
+        else
+        {
+
+            s.source.Play();
+            s.source.volume = 0;
+            for (float i = 0; i < 0.4f; i += 0.1f)
+            {
+                s.source.volume = i;
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            Debug.Log("FirstLight-AfterSealed is playing");
         }
     }
+
+
 }

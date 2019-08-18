@@ -31,7 +31,7 @@ public class IceController : MonoBehaviour
                 iceWalls[0].GetComponent<IceEffectController>().Suicide();
             }
 
-            FindObjectOfType<AudioManagerController>().Play("PotionBreak4");
+            AudioManagerController.instance.Play("PotionBreak4");
             //col.GetComponent<BoxCollider2D>().transform.position.y + 2.75f * col.GetComponent<BoxCollider2D>().size.y
             Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1.0f);
             GameObject ice = Instantiate(iceEffectPrefab, pos, transform.rotation);
@@ -40,10 +40,12 @@ public class IceController : MonoBehaviour
         }
         else if (col.gameObject.tag == "Wall")
         {
+            AudioManagerController.instance.Play("PotionBreak4");
             Destroy(gameObject);
         }
         else if (col.gameObject.tag == "Boundary")
         {
+            AudioManagerController.instance.Play("PotionBreak4");
             Destroy(gameObject);
         }
     }

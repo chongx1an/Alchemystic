@@ -1,0 +1,246 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3364947046873135971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3364947046873135981}
+  - component: {fileID: 3364947046873135980}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3364947046873135981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364947046873135971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3364947046873135980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364947046873135971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30211ed0155ca74eb49e5fd951fa35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: FireLightUp
+    clip: {fileID: 8300000, guid: 8de918e479ac0a14fa0c0ee717300fd9, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: BossAttack
+    clip: {fileID: 8300000, guid: eda94c5bb9bb7f04ea59daf07d53c1f1, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: FirstLight-AfterSealed
+    clip: {fileID: 8300000, guid: 3b6d7f3c4c025d4469b025d74dd812d3, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 180
+    source: {fileID: 0}
+  - name: PortalSealed
+    clip: {fileID: 8300000, guid: 77200196d0cc1b84fb3544e9ac3aad69, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: EnemyAttack
+    clip: {fileID: 8300000, guid: a9807761eab85ac4fa7edc726f48f1d6, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: SpaceSound
+    clip: {fileID: 8300000, guid: 0b5f6654a6279444eacac9b0e4e334a5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: IceBreaking
+    clip: {fileID: 8300000, guid: c3a7ce729742810439dbf771d9c3b023, type: 3}
+    volume: 0.77
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    minDistance: 7
+    maxDistance: 10
+    priority: 0
+    source: {fileID: 0}
+  - name: PlayerWalking
+    clip: {fileID: 8300000, guid: 2c7a0eb5a3e377a46960b1cd865256ee, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: PotionBreak1
+    clip: {fileID: 8300000, guid: 3a3ee9a05c43a43438cffaabd90eef9c, type: 3}
+    volume: 0.17
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: PotionBreak2
+    clip: {fileID: 8300000, guid: 7e4e649ba53ccff40b75b25f4093eb87, type: 3}
+    volume: 0.22
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: PotionBreak4
+    clip: {fileID: 8300000, guid: 57795ba817925e74e892711a08c36c84, type: 3}
+    volume: 0.22
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: Andromeda-EnterGame
+    clip: {fileID: 8300000, guid: 4c7096cbfd146d649b1de7d88f325c6e, type: 3}
+    volume: 0.22
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 180
+    source: {fileID: 0}
+  - name: Blight-BossStage
+    clip: {fileID: 8300000, guid: 59c6b9149161ad44fa8ea0863341d854, type: 3}
+    volume: 0.22
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 180
+    source: {fileID: 0}
+  - name: Freeing-Intro
+    clip: {fileID: 8300000, guid: db1f39f508cf670409f42e16d71648d6, type: 3}
+    volume: 0.22
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 180
+    source: {fileID: 0}
+  - name: LavaHead
+    clip: {fileID: 8300000, guid: 3d52c37f534e0a945932e24cd9d49ac5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.5
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: LavaFlow
+    clip: {fileID: 8300000, guid: d288cbaafb4e7a14d96820d15f0597ea, type: 3}
+    volume: 0.22
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    priority: 0
+    source: {fileID: 0}
+  - name: LavaMechanism
+    clip: {fileID: 8300000, guid: a1f8ab0770b38874aa8b1f875aa77b7b, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.5
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: SpellSound1
+    clip: {fileID: 8300000, guid: b3c187b8d976a0b42aa7250d99a5afef, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.5
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: PotionPop
+    clip: {fileID: 8300000, guid: 42bd315b02fd89d4383c91defcfa9e66, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.5
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: SpellSound2
+    clip: {fileID: 8300000, guid: 831e7dda6f4cd4e419fd15dc2388faf9, type: 3}
+    volume: 0.73
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.2
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}

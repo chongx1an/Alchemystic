@@ -28,26 +28,26 @@ public class HintMapController : MonoBehaviour
     {
         if (isShow && hintMap.color.a <= 1.0f)
         {
-            float opacity = hintMap.color.a + 0.01f;
+            float opacity = hintMap.color.a + 0.05f;
             Color newColor = new Color(hintMap.color.r, hintMap.color.g, hintMap.color.b, opacity);
             hintMap.color = newColor;
         }
         else if (!isShow && hintMap.color.a >= 0.0f)
         {
-            float opacity = hintMap.color.a - 0.01f;
+            float opacity = hintMap.color.a - 0.05f;
             Color newColor = new Color(hintMap.color.r, hintMap.color.g, hintMap.color.b, opacity);
             hintMap.color = newColor;
         }
 
         if (isShow && hintMapCover.color.a <= 0.5f)
         {
-            float opacity = hintMapCover.color.a + 0.01f;
+            float opacity = hintMapCover.color.a + 0.05f;
             Color newColor = new Color(hintMapCover.color.r, hintMapCover.color.g, hintMapCover.color.b, opacity);
             hintMapCover.color = newColor;
         }
         else if (!isShow && hintMapCover.color.a >= 0.0f)
         {
-            float opacity = hintMapCover.color.a - 0.01f;
+            float opacity = hintMapCover.color.a - 0.05f;
             Color newColor = new Color(hintMapCover.color.r, hintMapCover.color.g, hintMapCover.color.b, opacity);
             hintMapCover.color = newColor;
         }
@@ -56,6 +56,14 @@ public class HintMapController : MonoBehaviour
         transform.Translate(0, 0, -0.0001f);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            //AudioManagerController.instance.Play("PotionPop");
+            AudioManagerController.instance.Play("SpellSound2");
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -171,10 +171,8 @@ MonoBehaviour:
   attackPoint: {fileID: 2671081191941484418}
   areaOfAttackEffect: 1
   hurtingEffect: {fileID: 2671081191915701923}
-  patrolMaxRight: 227
-  patrolMaxLeft: 269
-  summonEffect: {fileID: 279101986788650511, guid: 5bb25ad8aa8436a428af117ceceabbf1,
-    type: 3}
+  patrolMaxRight: 269
+  patrolMaxLeft: 227
 --- !u!61 &2671081191244844725
 BoxCollider2D:
   m_ObjectHideFlags: 0

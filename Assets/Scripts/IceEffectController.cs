@@ -55,27 +55,27 @@ public class IceEffectController : MonoBehaviour
 
         if (health <= 0)
         {
-            FindObjectOfType<AudioManagerController>().Play("IceBreaking");
+            AudioManagerController.instance.Play("IceBreaking");
             Destroy(gameObject);
 
             return true;
         }
         else if (health <= 20)
         {
-            FindObjectOfType<AudioManagerController>().Play("IceBreaking");
+            AudioManagerController.instance.Play("IceBreaking");
             animator.SetBool("is20", true);
 
         }
         else if (health <= 40)
         {
-            FindObjectOfType<AudioManagerController>().Play("IceBreaking");
+            AudioManagerController.instance.Play("IceBreaking");
             animator.SetBool("is40", true);
 
         }
         else if (health <= 70)
         {
 
-            FindObjectOfType<AudioManagerController>().Play("IceBreaking");
+            AudioManagerController.instance.Play("IceBreaking");
             animator.SetBool("is70", true);
 
 

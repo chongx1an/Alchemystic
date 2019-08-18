@@ -330,7 +330,7 @@ public class EnemyController : MonoBehaviour
         isAttacking = true;
 
         attackReadyTimer = attackCD;
-        FindObjectOfType<AudioManagerController>().Play("EnemyAttack");
+        AudioManagerController.instance.Play("EnemyAttack");
         yield return new WaitForSeconds(0.4f);
 
         Collider2D[] dmgList = Physics2D.OverlapCircleAll(attackPoint.transform.position, areaOfAttackEffect);
@@ -366,7 +366,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    private void Hurt(float damage)
+    public void Hurt(float damage)
     {
 
         health -= damage;

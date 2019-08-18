@@ -19,6 +19,7 @@ public class Sound {
 
     public float minDistance;
     public float maxDistance;
+    public int priority;
 
     [HideInInspector]
     public AudioSource source;

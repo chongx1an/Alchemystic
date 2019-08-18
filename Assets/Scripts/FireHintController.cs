@@ -38,10 +38,19 @@ public class FireHintController : MonoBehaviour
             hintRenderer.color = newColor;
         }
 
+
         transform.Translate(0, 0, 0.0001f);
         transform.Translate(0, 0, -0.0001f);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && playerController.potionMode == PlayerController.PotionMode.Fire)
+        {
+            //AudioManagerController.instance.Play("PotionPop");
+            AudioManagerController.instance.Play("SpellSound1");
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player" && playerController.potionMode == PlayerController.PotionMode.Fire)

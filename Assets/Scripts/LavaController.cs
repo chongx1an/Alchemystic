@@ -25,6 +25,7 @@ public class LavaController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Ice Potion" || collision.gameObject.tag == "Space Potion")
         {
+            AudioManagerController.instance.Play("PotionBreak4");
             Destroy(collision.gameObject);
         }
     }
