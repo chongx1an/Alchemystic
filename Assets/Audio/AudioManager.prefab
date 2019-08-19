@@ -59,9 +59,9 @@ MonoBehaviour:
     volume: 0.9
     pitch: 1
     loop: 0
-    spatialBlend: 0
-    minDistance: 0
-    maxDistance: 0
+    spatialBlend: 1
+    minDistance: 7
+    maxDistance: 10
     priority: 0
     source: {fileID: 0}
   - name: FirstLight-AfterSealed
@@ -89,9 +89,9 @@ MonoBehaviour:
     volume: 0.75
     pitch: 1
     loop: 0
-    spatialBlend: 0
-    minDistance: 0
-    maxDistance: 0
+    spatialBlend: 1
+    minDistance: 7
+    maxDistance: 10
     priority: 0
     source: {fileID: 0}
   - name: SpaceSound

@@ -6,7 +6,7 @@ public class FireEffectController : MonoBehaviour
 {
     // Start is called before the first frame update
     private Animator animator;
-    private new SpriteRenderer renderer;
+    private SpriteRenderer renderer;
     public float fireDuration;
     void Start()
     {

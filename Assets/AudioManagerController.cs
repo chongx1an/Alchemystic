@@ -65,6 +65,7 @@ public class AudioManagerController : MonoBehaviour
 
     public IEnumerator StartMainSceneBackgroundMusic()
     {
+        ImmediateStopEnterBossBackgroundMusic();
         StartCoroutine("StopStartSceneBackgroundMusic");
         Sound s = Array.Find(sounds, sound => sound.name == "Andromeda-EnterGame");
         if (s == null)
@@ -185,6 +186,16 @@ public class AudioManagerController : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
 
+        s.source.Stop();
+
+
+    }
+
+    public void ImmediateStopEnterBossBackgroundMusic()
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == "Blight-BossStage");
+
+        Debug.Log("Blight-BossStage is stopping");
         s.source.Stop();
 
 
