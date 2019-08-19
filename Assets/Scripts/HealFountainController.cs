@@ -6,7 +6,6 @@ public class HealFountainController : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject player;
-    private PlayerController playerController;
     private Rigidbody2D playerRB2D;
     public GameObject healingEffect;
     private float minTime = 0.0f;
@@ -15,7 +14,6 @@ public class HealFountainController : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        playerController = player.GetComponent<PlayerController>();
         playerRB2D = player.GetComponent<Rigidbody2D>();
 
         isHealing = false;
@@ -65,10 +63,10 @@ public class HealFountainController : MonoBehaviour
 
     private void Heal(int amount)
     {
-        if(playerController.health < 100)
+        if(PlayerController.instance.health < 100)
         {
             isHealing = true;
-            playerController.health += amount;
+            PlayerController.instance.TakeHeal(amount);
         }
         else
         {

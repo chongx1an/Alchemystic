@@ -6,13 +6,11 @@ public class FireHintController : MonoBehaviour
 {
     public GameObject hintWord;
     private SpriteRenderer hintRenderer;
-    private PlayerController playerController;
 
     private bool isShow;
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         hintRenderer = hintWord.GetComponent<SpriteRenderer>();
         isShow = false;
     }
@@ -45,7 +43,7 @@ public class FireHintController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && playerController.potionMode == PlayerController.PotionMode.Fire)
+        if (collision.gameObject.tag == "Player" && PlayerController.instance.potionMode == PlayerController.PotionMode.Fire)
         {
             //AudioManagerController.instance.Play("PotionPop");
             AudioManagerController.instance.Play("SpellSound1");
@@ -53,7 +51,7 @@ public class FireHintController : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" && playerController.potionMode == PlayerController.PotionMode.Fire)
+        if(collision.gameObject.tag == "Player" && PlayerController.instance.potionMode == PlayerController.PotionMode.Fire)
         {
             isShow = true;
         }

@@ -80,7 +80,7 @@ public class BossController : MonoBehaviour
         transform.Translate(0, 0, -0.01f);
 
 
-        if (targetList.Count > 0)
+        if (targetList.Count > 0 && PlayerController.instance.isAlive)
         {
             Chase();
         }
@@ -196,6 +196,7 @@ public class BossController : MonoBehaviour
                 }
                 else
                 {
+         
                     StartCoroutine("Attack");
                 }
 
@@ -363,6 +364,7 @@ public class BossController : MonoBehaviour
 
         if (health <= 0)
         {
+            AudioManagerController.instance.Play("BossDeath");
             animator.Play("boss_death");
             moveSpeed = 0.0f;
             Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + 1.5f);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     /*
      * Player Stats
      */
@@ -45,13 +46,18 @@ public class PlayerController : MonoBehaviour
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
 
+    private PotionMode previousPotion;
+    public bool isAlive;
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+            instance = this;
 
         AudioManagerController.instance.StartCoroutine("StartMainSceneBackgroundMusic");
 
         potionMode = PotionMode.Fire;
+        previousPotion = potionMode;
         aimTo = AimTo.Right;
         faceTo = FaceTo.Right;
 
@@ -63,19 +69,31 @@ public class PlayerController : MonoBehaviour
 
         shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = Shader.Find("Sprites/Default"); // or whatever sprite shader is being used
+        isAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        SwitchPotion();
-        Jump();
+        if (isAlive)
+        {
+            SwitchPotion();
+            Jump();
+        }
+
     }
 
     private void FixedUpdate()
     {
-        Move(MovementInput());
+        if (isAlive)
+        {
+            if (potionMode != previousPotion)
+            {
+                AudioManagerController.instance.Play("SwitchPotion");
+                previousPotion = potionMode;
+            }
+            Move(MovementInput());
+        }
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -212,6 +230,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Alpha2))
         {
+
             animator.SetBool("isIce", true);
             animator.SetBool("isFire", false);
             animator.SetBool("isSpace", false);
@@ -277,11 +296,27 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            animator.SetTrigger("death");
+            isAlive = false;
         }
 
     }
 
+    public void TakeHeal(float heal)
+    {
+        if (health < 100)
+        {
+            if (health + heal > 100)
+            {
+                health = 100;
+            }
+            else
+            {
+                health += heal;
+            }
+
+        }
+    }
     private IEnumerator WhiteSpriteAndBack()
     {
         spriteRenderer.material.shader = shaderGUItext;

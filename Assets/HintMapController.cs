@@ -8,13 +8,10 @@ public class HintMapController : MonoBehaviour
     public Image hintMap;
     public Image hintMapCover;
 
-    private PlayerController playerController;
-
     private bool isShow;
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         isShow = false;
     }
 

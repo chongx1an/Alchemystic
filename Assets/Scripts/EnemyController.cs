@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
         transform.Translate(0, 0, 0.01f);
         transform.Translate(0, 0, -0.01f);
 
-        if (isAttacking)
+        if (isAttacking && PlayerController.instance.isAlive)
         {
             if (isFacingRight)
             {
@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour
         
         }
 
-        if (targetList.Count > 0)
+        if (targetList.Count > 0 && PlayerController.instance.isAlive)
         {
             Chase();
         }
@@ -379,4 +379,5 @@ public class EnemyController : MonoBehaviour
 
         }
     }
+
 }

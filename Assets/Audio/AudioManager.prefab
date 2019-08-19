@@ -254,3 +254,43 @@ MonoBehaviour:
     maxDistance: 15
     priority: 0
     source: {fileID: 0}
+  - name: SwitchPotion
+    clip: {fileID: 8300000, guid: 283d76b88e092774b944c8aab6e91939, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.2
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: PauseSound
+    clip: {fileID: 8300000, guid: ea62662404f275b4091c42697762a1cf, type: 3}
+    volume: 0.46
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.2
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: BossDeath
+    clip: {fileID: 8300000, guid: 4c2e2694c4bb6634daffe3415b3ee401, type: 3}
+    volume: 0.73
+    pitch: 1
+    loop: 0
+    spatialBlend: 0.2
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 1bf13ef9516fca340ab621807e9c7d7f, type: 3}
+    volume: 0.68
+    pitch: 0.63
+    loop: 0
+    spatialBlend: 0.2
+    minDistance: 11
+    maxDistance: 15
+    priority: 0
+    source: {fileID: 0}

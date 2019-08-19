@@ -9,7 +9,6 @@ public class PotionController : MonoBehaviour
      * Player related things
      */
     public static GameObject player;
-    private static PlayerController playerController;
     private bool fireReady;
     private bool iceReady;
     private bool spaceReady;
@@ -60,7 +59,6 @@ public class PotionController : MonoBehaviour
         {
             player = GameObject.Find("Player");
         }
-        playerController = player.GetComponent<PlayerController>();
         isAiming = false;
         InitializeTrajectoryPoints();
         onlyOnce = true;
@@ -69,7 +67,7 @@ public class PotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenuController.isPaused)
+        if (!MenuController.isPaused)
         {
             CreatePotionWhenInput();
             AimPotion();
@@ -89,10 +87,6 @@ public class PotionController : MonoBehaviour
             {
                 fireCD_Cover.fillAmount -= Time.deltaTime / fireCD;
             }
-            else
-            {
-                fireCD_Cover.fillAmount = 1;
-            }
         }
         else
         {
@@ -107,10 +101,6 @@ public class PotionController : MonoBehaviour
             {
                 iceCD_Cover.fillAmount -= Time.deltaTime / iceCD;
             }
-            else
-            {
-                iceCD_Cover.fillAmount = 1;
-            }
         }
         else
         {
@@ -119,16 +109,14 @@ public class PotionController : MonoBehaviour
         
         if (!spaceReady)
         {
+
             spaceCD_Cover.enabled = true;
             float count = 0;
             if (spaceCD_Cover.fillAmount > count)
             {
                 spaceCD_Cover.fillAmount -= Time.deltaTime / spaceCD;
             }
-            else
-            {
-                spaceCD_Cover.fillAmount = 1;
-            }
+
         }
         else
         {
@@ -152,12 +140,12 @@ public class PotionController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if ((playerController.potionMode == PlayerController.PotionMode.Fire && fireReady)||
-                (playerController.potionMode == PlayerController.PotionMode.Ice && iceReady)||
-                (playerController.potionMode == PlayerController.PotionMode.Space && spaceReady))
+            if ((PlayerController.instance.potionMode == PlayerController.PotionMode.Fire && fireReady)||
+                (PlayerController.instance.potionMode == PlayerController.PotionMode.Ice && iceReady)||
+                (PlayerController.instance.potionMode == PlayerController.PotionMode.Space && spaceReady))
             {
                 mouseOriginPoint = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-                CreatePotion(playerController.potionMode);
+                CreatePotion(PlayerController.instance.potionMode);
                 potion.GetComponent<Rigidbody2D>().gravityScale = 0;
                 isAiming = true;
                 onlyOnce = true;
@@ -213,18 +201,21 @@ public class PotionController : MonoBehaviour
     private IEnumerator ThrowFirePotion()
     {
         fireReady = false;
+        fireCD_Cover.fillAmount = 1;
         yield return new WaitForSeconds(fireCD);
         fireReady = true;
     }
     private IEnumerator ThrowIcePotion()
     {
         iceReady = false;
+        iceCD_Cover.fillAmount = 1;
         yield return new WaitForSeconds(iceCD);
         iceReady = true;
     }
     private IEnumerator ThrowSpacePotion()
     {
         spaceReady = false;
+        spaceCD_Cover.fillAmount = 1;
         yield return new WaitForSeconds(spaceCD);
         spaceReady = true;
     }
@@ -239,7 +230,7 @@ public class PotionController : MonoBehaviour
     {
         if (isAiming)
         {
-            playerController.isAiming = true;
+            PlayerController.instance.isAiming = true;
 
             Vector2 mouseStretchPoint = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
@@ -247,11 +238,11 @@ public class PotionController : MonoBehaviour
 
             if (mouseDiff.x > 0)
             {
-                playerController.aimTo = PlayerController.AimTo.Right;
+                PlayerController.instance.aimTo = PlayerController.AimTo.Right;
             }
             else
             {
-                playerController.aimTo = PlayerController.AimTo.Left;
+                PlayerController.instance.aimTo = PlayerController.AimTo.Left;
             }
 
             angle = Vector2.SignedAngle(Vector2.right, mouseDiff);
@@ -275,7 +266,7 @@ public class PotionController : MonoBehaviour
         }
         else
         {
-            playerController.isAiming = false;
+            PlayerController.instance.isAiming = false;
         }
     }
     private float RestrictForce(float force)
