@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public float health = 100f;
     public float moveSpeed = 7.5f;
     public float attackDmg = 20.0f;
+    private bool isAlive;
 
 
     /* Enemy Chasing Direction Attributes
@@ -73,6 +74,7 @@ public class EnemyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.color = new Color(1, 0, 0, spriteRenderer.color.a);
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -85,37 +87,40 @@ public class EnemyController : MonoBehaviour
     {
         transform.Translate(0, 0, 0.01f);
         transform.Translate(0, 0, -0.01f);
-
-        if (isAttacking && PlayerController.instance.isAlive)
+        if (isAlive)
         {
-            if (isFacingRight)
+            if (isAttacking && PlayerController.instance.isAlive)
             {
-                transform.Translate(0.02f, 0, 0);
-                transform.Translate(0.03f, 0.03f, 0);
+                if (isFacingRight)
+                {
+                    transform.Translate(0.02f, 0, 0);
+                    transform.Translate(0.03f, 0.03f, 0);
+                }
+                else
+                {
+                    transform.Translate(-0.02f, 0, 0);
+                    transform.Translate(-0.03f, 0.03f, 0);
+                }
+
+
+            }
+
+            if (targetList.Count > 0 && PlayerController.instance.isAlive)
+            {
+                Chase();
             }
             else
             {
-                transform.Translate(-0.02f, 0, 0);
-                transform.Translate(-0.03f, 0.03f, 0);
+                nearestTarget = null;
+                StartCoroutine("Patrol");
             }
-            
+
+            if (spriteRenderer.color.g < 1.0f)
+            {
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g + 0.05f, spriteRenderer.color.b + 0.05f);
+            }
+        }
         
-        }
-
-        if (targetList.Count > 0 && PlayerController.instance.isAlive)
-        {
-            Chase();
-        }
-        else
-        {
-            nearestTarget = null;
-            StartCoroutine("Patrol");
-        }
-
-        if (spriteRenderer.color.g < 1.0f)
-        {
-            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g + 0.05f, spriteRenderer.color.b + 0.05f);
-        }
     }
 
     private IEnumerator Patrol()
@@ -376,7 +381,7 @@ public class EnemyController : MonoBehaviour
             animator.Play("enemy_death");
             moveSpeed = 0.0f;
             Destroy(gameObject, 1f);
-
+            isAlive = false;
         }
     }
 

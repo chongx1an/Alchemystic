@@ -15,6 +15,7 @@ public class BossController : MonoBehaviour
     public float health = 100f;
     public float moveSpeed = 7.5f;
     public float attackDmg = 20.0f;
+    private bool isAlive;
 
 
     /* Enemy Chasing Direction Attributes
@@ -66,6 +67,7 @@ public class BossController : MonoBehaviour
         transform.position = new Vector2(restritedTransformX, transform.position.y);
         isReachedPatrolPoint = false;
         destX = Random.Range(patrolMaxLeft, patrolMaxRight);
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -79,16 +81,19 @@ public class BossController : MonoBehaviour
         transform.Translate(0, 0, 0.01f);
         transform.Translate(0, 0, -0.01f);
 
-
-        if (targetList.Count > 0 && PlayerController.instance.isAlive)
+        if (isAlive)
         {
-            Chase();
+            if (targetList.Count > 0 && PlayerController.instance.isAlive)
+            {
+                Chase();
+            }
+            else
+            {
+                nearestTarget = null;
+                StartCoroutine("Patrol");
+            }
         }
-        else
-        {
-            nearestTarget = null;
-            StartCoroutine("Patrol");
-        }
+        
 
     }
 
@@ -368,7 +373,7 @@ public class BossController : MonoBehaviour
             animator.Play("boss_death");
             moveSpeed = 0.0f;
             Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length + 1.5f);
-
+            isAlive = false;
         }
     }
 }
