@@ -6,12 +6,12 @@ public class FireEffectController : MonoBehaviour
 {
     // Start is called before the first frame update
     private Animator animator;
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
     public float fireDuration;
     void Start()
     {
         animator = GetComponent<Animator>();
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,8 +24,8 @@ public class FireEffectController : MonoBehaviour
     private IEnumerator DistinguishFire()
     {
         yield return new WaitForSeconds(fireDuration);
-        Color opacity = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0.5f);
-        renderer.color = opacity;
+        Color opacity = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
+        spriteRenderer.color = opacity;
         animator.Play("fire_exit");
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
