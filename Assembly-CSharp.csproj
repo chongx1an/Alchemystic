@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\StartSceneController.cs" />
     <Compile Include="Assets\Scripts\StorySceneController.cs" />
     <Compile Include="Assets\Scripts\VerticleObstacleController.cs" />
+    <Compile Include="Assets\WinnigTextController.cs" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/ch0ng/Alchemystic_2018/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>

@@ -33,6 +33,7 @@ public class PortalController : MonoBehaviour
             FindObjectOfType<PortalTriggeredAreaController>().StartCoroutine("LighterBackground");
             EnemyController[] enemyList = FindObjectsOfType<EnemyController>();
 
+            FindObjectOfType<WinnigTextController>().StartCoroutine("ShowText");
             foreach(EnemyController enemy in enemyList)
             {
                 enemy.Hurt(100);

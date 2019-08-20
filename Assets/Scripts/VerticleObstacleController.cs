@@ -18,25 +18,29 @@ public class VerticleObstacleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb2d.transform.position.y < maxHeight && isUp)
+        if (!MenuController.isPaused)
         {
-            rb2d.transform.Translate(0, 0.05f, 0);
-            
-        }
-        else
-        {
-            isUp = false;
-            if (rb2d.transform.position.y > minHeight && !isUp)
+            if (rb2d.transform.position.y < maxHeight && isUp)
             {
-                rb2d.transform.Translate(0, -0.05f, 0);
+                rb2d.transform.Translate(0, 0.05f, 0);
 
             }
             else
             {
-                isUp = true;
+                isUp = false;
+                if (rb2d.transform.position.y > minHeight && !isUp)
+                {
+                    rb2d.transform.Translate(0, -0.05f, 0);
 
+                }
+                else
+                {
+                    isUp = true;
+
+                }
             }
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -77,7 +77,7 @@ public class StorySceneController : MonoBehaviour
                 break;
             }
         }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.7f);
         ready = true;
 
     }

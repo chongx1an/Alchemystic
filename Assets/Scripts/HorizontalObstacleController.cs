@@ -18,26 +18,30 @@ public class HorizontalObstacleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb2d.transform.position.x < maxRight && isRight)
+        if (!MenuController.isPaused)
         {
-            rb2d.transform.Translate(0.05f, 0, 0);
-
-        }
-        else
-        {
-
-            isRight = false;
-            if (rb2d.transform.position.x > maxLeft && !isRight)
+            if (rb2d.transform.position.x < maxRight && isRight)
             {
-                rb2d.transform.Translate(-0.05f, 0, 0);
+                rb2d.transform.Translate(0.05f, 0, 0);
 
             }
             else
             {
-                isRight = true;
 
+                isRight = false;
+                if (rb2d.transform.position.x > maxLeft && !isRight)
+                {
+                    rb2d.transform.Translate(-0.05f, 0, 0);
+
+                }
+                else
+                {
+                    isRight = true;
+
+                }
             }
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
