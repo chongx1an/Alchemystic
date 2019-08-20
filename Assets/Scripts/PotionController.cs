@@ -173,7 +173,8 @@ public class PotionController : MonoBehaviour
                 potionRB2D.gravityScale = 2;
                 potionRB2D.velocity = force;    //Throw potion
                 onlyOnce = false;
-                potion.GetComponent<Rigidbody2D>().simulated = true;
+                potionRB2D.simulated = true;
+
                 HideTrajectoryPath();
                 isAiming = false;
                 if (potion.tag == "Fire Potion")
@@ -197,6 +198,16 @@ public class PotionController : MonoBehaviour
         }
         
     }
+
+    /*
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Potion is no more triggered.");
+            potion.GetComponent<Collider2D>().isTrigger = false;
+        }
+    }*/
 
     private IEnumerator ThrowFirePotion()
     {
@@ -247,6 +258,7 @@ public class PotionController : MonoBehaviour
 
             angle = Vector2.SignedAngle(Vector2.right, mouseDiff);
 
+
             potion.transform.position = transform.position;
 
             Vector2 velocity = power * mouseDiff.magnitude;
@@ -259,6 +271,8 @@ public class PotionController : MonoBehaviour
             float force_y = velocity.y * Mathf.Sin(angle * Mathf.Deg2Rad);
 
             force = new Vector2(force_x, force_y);
+
+            //Debug.Log("Angle: " + angle + ", Force: " + force);
 
             DrawTrajectoryPath(angle, velocity);
 
