@@ -67,7 +67,7 @@ public class PotionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!MenuController.isPaused)
+        if (!MenuController.isPaused && PlayerController.instance.isAlive)
         {
             CreatePotionWhenInput();
             AimPotion();

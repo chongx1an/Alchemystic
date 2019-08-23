@@ -365,7 +365,16 @@ public class BossController : MonoBehaviour
     private void Hurt(float damage)
     {
 
-        health -= damage;
+
+
+        if (health - damage < 0)
+        {
+            health = 0;
+        }
+        else
+        {
+            health -= damage;
+        }
 
         if (health <= 0)
         {

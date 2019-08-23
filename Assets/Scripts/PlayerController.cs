@@ -287,12 +287,18 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         animator.SetTrigger("hurtFire");
-        if(potionMode == PotionMode.Fire)
-        {
 
-        }
         StartCoroutine("WhiteSpriteAndBack");
-        health -= dmg;
+
+
+        if (health - dmg < 0)
+        {
+            health = 0;
+        }
+        else
+        {
+            health -= dmg;
+        }
 
         if (health <= 0)
         {
